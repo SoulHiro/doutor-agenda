@@ -1,5 +1,7 @@
 import "./globals.css";
 
+import { Toaster } from "sonner";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -7,7 +9,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body>{children}</body>
+      <body>{children}
+        <Toaster position="bottom-center" richColors theme="light"/>
+      </body>
     </html>
   );
 }
