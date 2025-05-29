@@ -1,11 +1,22 @@
-"use client"
-import { CalendarDays, LayoutDashboard, LogOut, Stethoscope, UsersRound } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
+"use client";
+import {
+  CalendarDays,
+  LayoutDashboard,
+  LogOut,
+  Stethoscope,
+  UsersRound,
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   Sidebar,
   SidebarContent,
@@ -17,8 +28,8 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
-import { authClient } from "@/lib/auth-client"
+} from "@/components/ui/sidebar";
+import { authClient } from "@/lib/auth-client";
 
 // Menu items.
 const items = [
@@ -41,24 +52,26 @@ const items = [
     title: "Pacientes",
     url: "/patients",
     icon: UsersRound,
-  }
-]
+  },
+];
 
 export function AppSidebar() {
-  const router = useRouter()
-  const handleSignOut = async() => {
+  const router = useRouter();
+  const session = authClient.useSession();
+
+  const handleSignOut = async () => {
     await authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
-          router.push("/authentication")
-        }
-      }
-    })
-  }
+          router.push("/authentication");
+        },
+      },
+    });
+  };
 
   return (
     <Sidebar>
-      <SidebarHeader className="p-4 border-b">
+      <SidebarHeader className="border-b p-4">
         <Image src="/logo.svg" alt="Doutor Agenda" width={136} height={28} />
       </SidebarHeader>
       <SidebarContent>
@@ -85,7 +98,17 @@ export function AppSidebar() {
           <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button>Clinica</Button>
+                <SidebarMenuButton size="lg">
+                  <Avatar>
+                    <AvatarFallback>F</AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <p className="text-sm">{session.data?.user.clinic.name}</p>
+                    <p className="text-muted-foreground text-sm">
+                      {session.data?.user.email}
+                    </p>
+                  </div>
+                </SidebarMenuButton>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuItem onClick={handleSignOut}>
@@ -98,5 +121,5 @@ export function AppSidebar() {
         </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }
