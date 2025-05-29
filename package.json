@@ -9,8 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.0.1",
     "@neondatabase/serverless": "^1.0.0",
+    "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-tabs": "^1.1.12",
     "@tailwindcss/postcss": "^4.1.7",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -22,8 +25,10 @@
     "postcss": "^8.5.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hook-form": "^7.56.4",
     "tailwind-merge": "^3.3.0",
-    "tailwindcss": "^4.1.7"
+    "tailwindcss": "^4.1.7",
+    "zod": "^3.25.36"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
