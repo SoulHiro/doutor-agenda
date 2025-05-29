@@ -1,4 +1,5 @@
-"use client"
+import { headers } from "next/headers"
+import { redirect } from "next/navigation"
 
 import {
   Tabs,
@@ -6,11 +7,19 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
+import { auth } from "@/lib/auth"
 
 import LoginForm from "./components/login-from"
 import SignUpForm from "./components/sign-up-from"
 
-const AuthenticationPage =() => {
+const AuthenticationPage = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers()
+  })
+  if (session?.user) {
+    redirect("/dashboard")
+  }
+
   return (
   <div className="h-screen w-screen flex items-center justify-center">
     <Tabs defaultValue="login" className="w-[400px]">
