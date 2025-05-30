@@ -41,7 +41,7 @@ const formSchema = z
     name: z.string().trim().min(1, {
       message: "Nome é obrigatório.",
     }),
-    speciality: z.string().trim().min(1, {
+    specialty: z.string().trim().min(1, {
       message: "Especialidade é obrigatória.",
     }),
     appointmentPrice: z.number().min(1, {
@@ -78,7 +78,7 @@ const UpsertDoctorForm = ({ doctor, onSuccess }: UpsertDoctorFormProps) => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: doctor?.name ?? "",
-      speciality: doctor?.speciality ?? "",
+      specialty: doctor?.specialty ?? "",
       appointmentPrice: doctor?.appointmentPriceInCents
         ? doctor.appointmentPriceInCents / 100
         : 0,
@@ -135,7 +135,7 @@ const UpsertDoctorForm = ({ doctor, onSuccess }: UpsertDoctorFormProps) => {
           />
           <FormField
             control={form.control}
-            name="speciality"
+            name="specialty"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Especialidade</FormLabel>
@@ -149,12 +149,12 @@ const UpsertDoctorForm = ({ doctor, onSuccess }: UpsertDoctorFormProps) => {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {medicalSpecialties.map((speciality) => (
+                    {medicalSpecialties.map((specialty) => (
                       <SelectItem
-                        key={speciality.value}
-                        value={speciality.value}
+                        key={specialty.value}
+                        value={specialty.value}
                       >
-                        {speciality.label}
+                        {specialty.label}
                       </SelectItem>
                     ))}
                   </SelectContent>

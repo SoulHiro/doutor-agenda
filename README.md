@@ -18,7 +18,17 @@
 - [x] Sidebar e Route Groups
 - [x] Página de médicos
 - [x] Proteger página de médicos (autenticação)
-- [] Criação de médicos & NextSafeAction
-- [] Listagem de médicos
-- [] Atualização de médicos
-- [] Deleção de médicos
+- [x] Criação de médicos & NextSafeAction
+- [x] Listagem de médicos
+- [x] Atualização de médicos
+- [x] Deleção de médicos
+
+## Roteiro Aula 04: Gerenciamento de Pacientes e Agendamentos
+
+- [] Criação de pacientes
+- [] Edição de pacientes
+- [] Listagem de pacientes
+- [] Deleção de pacientes
+- [] Criação de agendamentos
+- [] Listagem de agendamentos
+- [] Deleção de agendamentos
