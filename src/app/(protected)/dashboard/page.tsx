@@ -13,7 +13,7 @@ const DashboardPage = async () => {
     redirect("/authentication");
   }
 
-  if (session.user.clinic) {
+  if (!session.user.clinic) {
     redirect("/clinic-form");
   }
   return (

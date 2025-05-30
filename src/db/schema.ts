@@ -16,16 +16,10 @@ export const usersTable = pgTable("users", {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
-  emailVerified: boolean("email_verified")
-    .$defaultFn(() => false)
-    .notNull(),
+  emailVerified: boolean("email_verified").notNull(),
   image: text("image"),
-  createdAt: timestamp("created_at")
-    .$defaultFn(() => /* @__PURE__ */ new Date())
-    .notNull(),
-  updatedAt: timestamp("updated_at")
-    .$defaultFn(() => /* @__PURE__ */ new Date())
-    .notNull(),
+  createdAt: timestamp("created_at").notNull(),
+  updatedAt: timestamp("updated_at").notNull(),
 }); // Um usuário tem um id
 
 export const usersTableRelations = relations(usersTable, ({ many }) => ({
@@ -68,12 +62,8 @@ export const verificationsTable = pgTable("verifications", {
   identifier: text("identifier").notNull(),
   value: text("value").notNull(),
   expiresAt: timestamp("expires_at").notNull(),
-  createdAt: timestamp("created_at").$defaultFn(
-    () => /* @__PURE__ */ new Date(),
-  ),
-  updatedAt: timestamp("updated_at").$defaultFn(
-    () => /* @__PURE__ */ new Date(),
-  ),
+  createdAt: timestamp("created_at"),
+  updatedAt: timestamp("updated_at"),
 });
 
 // Clinics
@@ -82,7 +72,7 @@ export const clinicsTable = pgTable("clinics", {
   id: uuid("id").defaultRandom().primaryKey(),
   name: text("name").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-  updateAt: timestamp("update_at")
+  updatedAt: timestamp("updated_at")
     .defaultNow()
     .$onUpdate(() => new Date()),
 }); // Uma clinica tem id, nome, data de criação e data de atualização
@@ -104,7 +94,7 @@ export const usersToClinicsTable = pgTable("users_to_clinics", {
     .notNull()
     .references(() => clinicsTable.id, { onDelete: "cascade" }),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-  updateAt: timestamp("update_at")
+  updatedAt: timestamp("updated_at")
     .defaultNow()
     .$onUpdate(() => new Date()),
 }); // Um usuário pode ter várias clinicas
@@ -135,14 +125,14 @@ export const doctorsTable = pgTable("doctors", {
   name: text("name").notNull(),
   avatarImageUrl: text("avatar_image_url"),
   // 1 - Monday, 2 - Tuesday, 3 - Wednesday, 4 - Thursday, 5 - Friday, 6 - Saturday, 0 - Sunday
-  avaiableFromWeekday: text("avaiable_from_weekday").notNull(), // 1
-  avaiableToWeekday: text("avaiable_to_weekday").notNull(), // 5
-  avaiableFromTime: time("avaiable_from_time").notNull(),
-  avaiableToTime: time("avaiable_to_time").notNull(),
+  availableFromWeekDay: integer("available_from_week_day").notNull(), // 1
+  availableToWeekDay: integer("available_to_week_day").notNull(), // 5
+  availableFromTime: time("available_from_time").notNull(),
+  availableToTime: time("available_to_time").notNull(),
   speciality: text("speciality").notNull(),
   appointmentPriceInCents: integer("appointment_price_in_cents").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-  updateAt: timestamp("update_at")
+  updatedAt: timestamp("updated_at")
     .defaultNow()
     .$onUpdate(() => new Date()),
 }); // Um médico tem id, nome, url da imagem, dia e horário de atendimento, especialidade e preço do agendamento.
@@ -170,9 +160,9 @@ export const patientsTable = pgTable("patients", {
   name: text("name").notNull(),
   email: text("email").notNull(),
   phoneNumber: text("phone_number").notNull(),
-  sex: patientsSexEnum("sex").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-  updateAt: timestamp("update_at")
+  sex: patientsSexEnum("sex").notNull(),
+  updatedAt: timestamp("updated_at")
     .defaultNow()
     .$onUpdate(() => new Date()),
 }); // Um paciente tem id, nome, email, telefone, sexo, data de criação e data de atualização.
@@ -195,15 +185,15 @@ export const appointmentsTable = pgTable("appointments", {
   date: timestamp("date").notNull(),
   clinicId: uuid("clinic_id")
     .notNull()
-    .references(() => clinicsTable.id, { onDelete: "cascade" }), // Referencia o id da tabela clinicas
+    .references(() => clinicsTable.id, { onDelete: "cascade" }),
   patientId: uuid("patient_id")
     .notNull()
-    .references(() => patientsTable.id, { onDelete: "cascade" }), // Referencia o id da tabela pacientes
+    .references(() => patientsTable.id, { onDelete: "cascade" }),
   doctorId: uuid("doctor_id")
     .notNull()
-    .references(() => doctorsTable.id, { onDelete: "cascade" }), // Referencia o id da tabela medicos
+    .references(() => doctorsTable.id, { onDelete: "cascade" }),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-  updateAt: timestamp("update_at")
+  updatedAt: timestamp("updated_at")
     .defaultNow()
     .$onUpdate(() => new Date()),
 }); // Um agendamento tem id, data, id da clinica, id do paciente e id do medico.

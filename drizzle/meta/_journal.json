@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1748615905233,
+      "tag": "0000_chemical_harrier",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1748617746543,
+      "tag": "0001_daily_cargill",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1748618717207,
+      "tag": "0002_productive_susan_delgado",
+      "breakpoints": true
+    }
+  ]
+}
