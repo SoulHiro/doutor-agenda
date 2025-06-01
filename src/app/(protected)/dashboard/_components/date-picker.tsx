@@ -2,7 +2,7 @@
 
 import { addMonths, format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { CalendarIcon } from 'lucide-react';
+import { Calendar as CalendarIcon } from 'lucide-react';
 import { parseAsIsoDate, useQueryState } from 'nuqs';
 import * as React from 'react';
 import { DateRange } from 'react-day-picker';
@@ -29,14 +29,20 @@ export function DatePicker({
   );
   const handleDateSelect = (dateRange: DateRange | undefined) => {
     if (dateRange?.from) {
-      setFrom(dateRange.from);
+      setFrom(dateRange.from, {
+        shallow: false,
+      });
     }
     if (dateRange?.to) {
-      setTo(dateRange.to);
+      setTo(dateRange.to, {
+        shallow: false,
+      });
     }
   };
-  const date = { from, to };
-
+  const date = {
+    from,
+    to,
+  };
   return (
     <div className={cn('grid gap-2', className)}>
       <Popover>
