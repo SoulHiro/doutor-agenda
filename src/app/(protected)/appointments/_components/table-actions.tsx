@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { MoreVerticalIcon, TrashIcon } from "lucide-react";
-import { useAction } from "next-safe-action/hooks";
-import { toast } from "sonner";
+import { MoreVerticalIcon, TrashIcon } from 'lucide-react';
+import { useAction } from 'next-safe-action/hooks';
+import { toast } from 'sonner';
 
-import { deleteAppointment } from "@/actions/delete-appointment";
+import { deleteAppointment } from '@/actions/delete-appointment';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,8 +15,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
+} from '@/components/ui/alert-dialog';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,8 +24,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { appointmentsTable } from "@/db/schema";
+} from '@/components/ui/dropdown-menu';
+import { appointmentsTable } from '@/db/schema';
 
 type AppointmentWithRelations = typeof appointmentsTable.$inferSelect & {
   patient: {
@@ -33,7 +33,7 @@ type AppointmentWithRelations = typeof appointmentsTable.$inferSelect & {
     name: string;
     email: string;
     phoneNumber: string;
-    sex: "male" | "female";
+    sex: 'male' | 'female';
   };
   doctor: {
     id: string;
@@ -51,10 +51,10 @@ const AppointmentsTableActions = ({
 }: AppointmentsTableActionsProps) => {
   const deleteAppointmentAction = useAction(deleteAppointment, {
     onSuccess: () => {
-      toast.success("Agendamento deletado com sucesso.");
+      toast.success('Agendamento deletado com sucesso.');
     },
     onError: () => {
-      toast.error("Erro ao deletar agendamento.");
+      toast.error('Erro ao deletar agendamento.');
     },
   });
 

@@ -10,7 +10,7 @@ import { auth } from "@/lib/auth";
 export const createClinic = async (name: string) => {
   const session = await auth.api.getSession({
     headers: await headers(),
-  });
+});
   if (!session?.user) {
     throw new Error("Unauthorized");
   }
