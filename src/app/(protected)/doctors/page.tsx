@@ -1,6 +1,6 @@
-import { eq } from "drizzle-orm";
-import { headers } from "next/headers";
-import { redirect } from "next/navigation";
+import { eq } from 'drizzle-orm';
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 import {
   PageActions,
@@ -10,24 +10,28 @@ import {
   PageHeader,
   PageHeaderContent,
   PageTitle,
-} from "@/components/ui/page-container";
-import { db } from "@/db";
-import { doctorsTable } from "@/db/schema";
-import { auth } from "@/lib/auth";
+} from '@/components/ui/page-container';
+import { db } from '@/db';
+import { doctorsTable } from '@/db/schema';
+import { auth } from '@/lib/auth';
 
-import AddDoctorButton from "./_components/add-doctor-button";
-import DoctorCard from "./_components/doctor-card";
+import AddDoctorButton from './_components/add-doctor-button';
+import DoctorCard from './_components/doctor-card';
 
 const DoctorsPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
   if (!session?.user) {
-    redirect("/authentication");
+    redirect('/authentication');
   }
   if (!session.user.clinic) {
-    redirect("/clinic-form");
+    redirect('/clinic-form');
   }
+  if (!session.user.plan) {
+    redirect('/new-subscription');
+  }
+
   const doctors = await db.query.doctorsTable.findMany({
     where: eq(doctorsTable.clinicId, session.user.clinic.id),
   });
