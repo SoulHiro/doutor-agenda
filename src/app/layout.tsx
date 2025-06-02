@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={manrope.variable}>
+      <body className={`${manrope.variable}`}>
         <QueryProvider>
           <NuqsAdapter>{children}</NuqsAdapter>
           <Toaster position="bottom-center" richColors theme="light" />

@@ -1,22 +1,24 @@
-"use client";
+'use client';
+
 import {
   CalendarDays,
+  Gem,
   LayoutDashboard,
   LogOut,
   Stethoscope,
   UsersRound,
-} from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+} from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from '@/components/ui/dropdown-menu';
 import {
   Sidebar,
   SidebarContent,
@@ -28,29 +30,28 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar";
-import { authClient } from "@/lib/auth-client";
+} from '@/components/ui/sidebar';
+import { authClient } from '@/lib/auth-client';
 
-// Menu items.
 const items = [
   {
-    title: "Dashboard",
-    url: "/dashboard",
+    title: 'Dashboard',
+    url: '/dashboard',
     icon: LayoutDashboard,
   },
   {
-    title: "Agendamentos",
-    url: "/appointments",
+    title: 'Agendamentos',
+    url: '/appointments',
     icon: CalendarDays,
   },
   {
-    title: "Médicos",
-    url: "/doctors",
+    title: 'Médicos',
+    url: '/doctors',
     icon: Stethoscope,
   },
   {
-    title: "Pacientes",
-    url: "/patients",
+    title: 'Pacientes',
+    url: '/patients',
     icon: UsersRound,
   },
 ];
@@ -64,12 +65,11 @@ export function AppSidebar() {
     await authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
-          router.push("/authentication");
+          router.push('/authentication');
         },
       },
     });
   };
-
   return (
     <Sidebar>
       <SidebarHeader className="border-b p-4">
@@ -90,6 +90,24 @@ export function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel>Outros</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  asChild
+                  isActive={pathname === '/subscription'}
+                >
+                  <Link href="/subscription">
+                    <Gem />
+                    <span>Assinatura</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
