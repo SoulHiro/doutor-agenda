@@ -207,9 +207,9 @@ Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) par
 
 Para dúvidas, sugestões ou reportar problemas:
 
-- 📧 **Email**: suporte@doutoragenda.com
-- 🐛 **Issues**: [GitHub Issues](https://github.com/seu-usuario/doutor-agenda/issues)
-- 📖 **Documentação**: [Wiki do Projeto](https://github.com/seu-usuario/doutor-agenda/wiki)
+- **Email**: [victormts.s1@gmail.com](mailto:victormts.s1@gmail.com)
+- **GitHub**: [@SoulHiro](https://github.com/SoulHiro)
+- **LinkedIn**: [Victor M.](https://linkedin.com/in/victormts)
 
 ---
 
